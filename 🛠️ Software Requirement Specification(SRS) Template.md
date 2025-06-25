@@ -1,4 +1,4 @@
-# 📘 Software Requirement Specification (SRS) Canvas
+# 📘 Software Requirement Specification (SRS) Template
 
 ## 1. 📌 Project Overview
 | Element             | Description |
