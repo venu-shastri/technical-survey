@@ -46,7 +46,6 @@
 
 
 ## 4. Appendix
-- Architecture diagram (not shown here)
 - DSL Grammar specification
 - Glossary of floorplan terms
 
