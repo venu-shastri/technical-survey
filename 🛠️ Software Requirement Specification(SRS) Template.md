@@ -55,7 +55,6 @@ _Add more as needed_
 | **Input Formats** | [XML, JSON, proprietary DSL, etc.] |
 | **Output Formats** | [JSON, log files, graphical views] |
 | **Storage Needs** | [Local file system, SQLite, in-memory, cloud store] |
-| **Data Volume Estimate** | [Per session, per project, peak loads] |
 | **Data Integrity Rules** | [Validation, schema enforcement, constraints] |
 
 ---
