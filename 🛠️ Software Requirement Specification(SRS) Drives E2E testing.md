@@ -39,8 +39,7 @@ Use the Given–When–Then (Gherkin-style) structure for each requirement or sc
 - The system model should contain all top-level and nested components  
 - The model should be accessible for subsequent commands (`search`, `export`)
 
-
-🧪 ### What You Get from E2E-Oriented Requirements
+ ### What You Get from E2E-Oriented Requirements
 ✅ Clear test scenarios
 
 ✅ Traceability to business value and behavior
