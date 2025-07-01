@@ -1,0 +1,93 @@
+Feature: VLSI System Builder
+
+  As a user of the VLSI System Builder
+  I want to define components with parameters and registers
+  So that I can create system instances with customized component instances
+
+  Background:
+    Given a component named "UART"
+      And it has a parameter "BASE" with value "0x1000"
+      And it has a register "CTRL" with address expression "BASE + 0x0"
+      And it has a register "DATA" with address expression "BASE + 0x4"
+
+  Scenario: Creating a component instance without parameter override
+    When I create a component instance "UART0" from component "UART"
+    Then the address of register "CTRL" in "UART0" should be "0x1000 + 0x0"
+    And the address of register "DATA" in "UART0" should be "0x1000 + 0x4"
+
+  Scenario: Creating a component instance with overridden parameter
+    When I create a component instance "UART1" from component "UART"
+      And I override parameter "BASE" with value "0x2000"
+    Then the address of register "CTRL" in "UART1" should be "0x2000 + 0x0"
+    And the address of register "DATA" in "UART1" should be "0x2000 + 0x4"
+
+
+dotnet add package SpecFlow
+dotnet add package SpecFlow.NUnit
+dotnet add package SpecFlow.Tools.MsBuild.Generation
+
+<PropertyGroup>
+  <TargetFramework>net7.0</TargetFramework>
+  <IsPackable>false</IsPackable>
+</PropertyGroup>
+
+<ItemGroup>
+  <PackageReference Include="SpecFlow" Version="3.9.74" />
+  <PackageReference Include="SpecFlow.NUnit" Version="3.9.74" />
+  <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.9.74" />
+</ItemGroup>
+
+
+
+using NUnit.Framework;
+using System.Collections.Generic;
+using System.Linq;
+using TechTalk.SpecFlow;
+
+[Binding]
+public class VLSISystemBuilderSteps
+{
+    private readonly Dictionary<string, Component> components = new();
+    private readonly Dictionary<string, ComponentInstance> instances = new();
+
+    private Component currentComponent;
+
+    [Given(@"a component named ""(.*)""")]
+    public void GivenAComponentNamed(string componentName)
+    {
+        currentComponent = new Component { Name = componentName };
+        components[componentName] = currentComponent;
+    }
+
+    [Given(@"it has a parameter ""(.*)"" with value ""(.*)""")]
+    public void GivenItHasAParameterWithValue(string paramName, string value)
+    {
+        currentComponent.AddParameter(paramName, value);
+    }
+
+    [Given(@"it has a register ""(.*)"" with address expression ""(.*)""")]
+    public void GivenItHasARegisterWithAddressExpression(string name, string expression)
+    {
+        currentComponent.AddRegister(name, expression);
+    }
+
+    [When(@"I create a component instance named ""(.*)""")]
+    public void WhenICreateAComponentInstanceNamed(string instanceName)
+    {
+        var instance = new ComponentInstance(instanceName, currentComponent);
+        instances[instanceName] = instance;
+    }
+
+    [When(@"I override parameter ""(.*)"" with value ""(.*)"" in ""(.*)""")]
+    public void WhenIOverrideParameterWithValue(string paramName, string value, string instanceName)
+    {
+        instances[instanceName].OverrideParameter(paramName, value);
+    }
+
+    [Then(@"the address of register ""(.*)"" in ""(.*)"" should be ""(.*)""")]
+    public void ThenTheAddressOfRegisterShouldBe(string regName, string instanceName, string expectedAddress)
+    {
+        var result = instances[instanceName].Resolve<Register>();
+        Assert.That(result[regName], Is.EqualTo(expectedAddress));
+    }
+}
