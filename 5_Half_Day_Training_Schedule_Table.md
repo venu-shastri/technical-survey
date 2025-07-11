@@ -1,0 +1,9 @@
+# 5 Half-Day Software Design Training Plan (Table Format)
+
+| **Day** | **Topics Covered** | **Assignment** |
+|--------|--------------------|----------------|
+| **Day 1** | **Programming Paradigms & Principles**<br>- Why Learn Paradigms?<br>- Available Paradigms<br>- Imperative vs Declarative<br>- KISS, YAGNI, DRY, Info Hiding, Cohesion, Coupling<br>- PLA, Boy Scout Rule<br>- Evolve a relevant Design Pattern | - Compare imperative vs declarative for a task<br>- Refactor code for KISS/DRY<br>- Identify and apply a suitable pattern |
+| **Day 2** | **Clean Code & Cognitive Complexity**<br>- Naming, Comments, Functions<br>- RAII, Exception Handling<br>- Reducing Complexity<br>- Libraries & Compiler as Colleague<br>- Evolve a relevant Design Pattern | - Refactor code for clarity<br>- Apply RAII and exception handling<br>- Use libraries and evolve a pattern |
+| **Day 3** | **Object-Oriented Thinking & SOLID**<br>- Object Design<br>- Cohesion/Coupling<br>- SRP, DIP, ISP, LOD<br>- Encapsulation, Composition > Inheritance<br>- Abstraction<br>- Evolve a relevant Design Pattern | - Refactor class using SRP & DIP<br>- Apply LOD & ISP<br>- Visualize with UML<br>- Use a pattern like Adapter or Bridge |
+| **Day 4** | **Functional Programming**<br>- Pure vs Impure<br>- Higher Order Functions<br>- Closures, Functions as Objects/Expressions<br>- Evolve a relevant Design Pattern | - Solve using functional style<br>- Use higher-order functions<br>- Apply pattern like Template Method or Strategy |
+| **Day 5** | **Software Extensibility & API Design**<br>- Dependency Injection (Ctor/Method/Property)<br>- DI Containers<br>- API Design Best Practices<br>- Abstraction, Naming<br>- Evolve a relevant Design Pattern | - Design a simple API<br>- Apply constructor DI<br>- Document design<br>- Use pattern like Factory or Builder |
